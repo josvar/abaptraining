@@ -59,8 +59,7 @@ MODULE status_0100 OUTPUT.
       create_error                = 3
       lifetime_error              = 4
       lifetime_dynpro_dynpro_link = 5
-      OTHERS                      = 6
-  .
+      OTHERS                      = 6.
 
   IF sy-subrc <> 0.
     MESSAGE
@@ -78,14 +77,13 @@ MODULE status_0100 OUTPUT.
       error_cntl_init   = 2
       error_cntl_link   = 3
       error_dp_create   = 4
-      OTHERS            = 5
-  .
+      OTHERS            = 5.
   IF sy-subrc <> 0.
-   MESSAGE
-    ID sy-msgid
-    TYPE sy-msgty
-    NUMBER sy-msgno
-    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    MESSAGE
+     ID sy-msgid
+     TYPE sy-msgty
+     NUMBER sy-msgno
+     WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   ENDIF.
 
   CALL METHOD alv_grid->set_table_for_first_display
@@ -97,8 +95,7 @@ MODULE status_0100 OUTPUT.
       invalid_parameter_combination = 1
       program_error                 = 2
       too_many_lines                = 3
-      OTHERS                        = 4
-  .
+      OTHERS                        = 4.
 
   IF sy-subrc <> 0.
     MESSAGE
