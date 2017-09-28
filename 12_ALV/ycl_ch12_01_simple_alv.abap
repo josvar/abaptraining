@@ -86,7 +86,7 @@ MODULE status_0100 OUTPUT.
      WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   ENDIF.
 
-  CALL METHOD alv_grid->set_table_for_first_display
+  alv_grid->set_table_for_first_display(
     EXPORTING
       i_structure_name              = 'YCL_CH12_SALES_SUM_STRU'
     CHANGING
@@ -95,15 +95,14 @@ MODULE status_0100 OUTPUT.
       invalid_parameter_combination = 1
       program_error                 = 2
       too_many_lines                = 3
-      OTHERS                        = 4.
+      OTHERS                        = 4 ).
 
   IF sy-subrc <> 0.
     MESSAGE
       ID sy-msgid
       TYPE sy-msgty
       NUMBER sy-msgno
-      WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4
-    .
+      WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
   ENDIF.
 
 ENDMODULE.                 " STATUS_0100  OUTPUT
