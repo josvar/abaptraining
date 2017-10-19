@@ -50,24 +50,7 @@ MODULE status_0100 OUTPUT.
   SET PF-STATUS 'STAT1'.
   SET TITLEBAR 'TITLE1' WITH ccode butxt waers.
 
-  CREATE OBJECT ccontr
-    EXPORTING
-      container_name              = 'CUST_CONTT'
-    EXCEPTIONS
-      cntl_error                  = 1
-      cntl_system_error           = 2
-      create_error                = 3
-      lifetime_error              = 4
-      lifetime_dynpro_dynpro_link = 5
-      OTHERS                      = 6.
-
-  IF sy-subrc <> 0.
-    MESSAGE
-      ID sy-msgid
-      TYPE sy-msgty
-      NUMBER sy-msgno
-      WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-  ENDIF.
+  perform init_container changing ccontr.
 
   CREATE OBJECT alv_grid
     EXPORTING
@@ -121,3 +104,29 @@ MODULE user_command_0100 INPUT.
   ENDIF.
 
 ENDMODULE.                 " USER_COMMAND_0100  INPUT
+
+
+********* Begin Init Containter ********
+form init_container changing ccontr type ref to cl_gui_custom_container.
+
+  CREATE OBJECT ccontr
+    EXPORTING
+      container_name              = 'CUST_CONTT'
+    EXCEPTIONS
+      cntl_error                  = 1
+      cntl_system_error           = 2
+      create_error                = 3
+      lifetime_error              = 4
+      lifetime_dynpro_dynpro_link = 5
+      OTHERS                      = 6.
+
+  IF sy-subrc <> 0.
+    MESSAGE
+      ID sy-msgid
+      TYPE sy-msgty
+      NUMBER sy-msgno
+      WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  ENDIF.
+
+endform.
+********* End Init Containter **********
